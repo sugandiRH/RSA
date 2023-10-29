@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encryption App</title>
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+
+        /* Reset some default styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* Center the container */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f9f9f9; /* Light gray background */
+}
+
+/* Card Styles */
+.card {
+    max-width: 400px;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    background-color: #ffffcc; /* Light yellow background */
+    padding: 20px;
+}
+
+.card-header {
+    background-color: #ffdb58; /* Yellow header background */
+    color: #fff;
+    text-align: center;
+    border: none;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.card-body {
+    padding: 20px 0;
+}
+
+/* Form Styles */
+.form-label {
+    font-weight: bold;
+}
+
+.form-control {
+    border-radius: 5px;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.form-text{
+    font-size: 9px;
+}
+
+.text-center{
+    text-align: center;
+}
+
+/* Button Styles */
+.btn-primary {
+    background-color: #ffdb58; /* Yellow button background */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-weight: bold;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.btn-primary:hover {
+    background-color: #ffd700; /* Darker yellow on hover */
+}
+
+/* Center text */
+.center-text {
+    text-align: center;
+}
+
+/* Error message style */
+.error {
+    color: #e74c3c; /* Red error text */
+    font-size: 12px;
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                <h1>Encryption App</h1>
+            </div>
+            <div class="card-body">
+                <form method="post" action="#" onsubmit="return validateForm()">
+                    <div class="form-group">
+                        <label for="message" class="form-label">Type the message you need to encrypt:</label>
+                        <textarea class="form-control" name="message" id="message" rows="4"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="role">Role :</label>
+                        <small id="roleHelp" class="form-text text-muted">(Selecting Role is important*)</small>
+                        <select id="role" name="role" class="form-control">
+                            <option value="">Select Role</option>
+                            <option value="Admin">Admin</option>
+                            <option value="User">User</option>
+                        </select>
+                        <span id="roleError" class="error"></span>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary">Send</button>
+                    </div>
+                    <p class="center-text"><a href="{{url_for('login')}}">click to login</a></p>
+                </form>
+            </div>
+        </div>
+        
+    </div>
+
+    <script>
+    // JavaScript for animations
+    const elementsToAnimate = document.querySelectorAll('.animate-fade-in');
+    elementsToAnimate.forEach((element) => {
+        element.style.animationDelay = `${Math.random() * 1}s`; // Randomize animation delays
+    });
+</script>
+
+    <script>
+        function validateForm() {
+            // Reset error messages
+            document.getElementById("roleError").textContent = "";
+
+            
+            const role = document.getElementById("role").value;
+
+            // Validate role
+            if (!role) {
+                document.getElementById("roleError").textContent = "Please select a role";
+                return false;
+            }
+
+            // If all validations pass, the form will submit
+            return true;
+        }
+    </script>
+</body>
+</html>
